@@ -1,0 +1,34 @@
+1.action 和 action类
+	1）action： 代表一个  Struts2  的请求
+	2） Action类： 能够处理 Struts2 请求的类
+		>属性的名字必须遵循与JavaBean属性名相同的命名规则
+		   属性的类型可以是任意类型，从字符串到非字符串（基本数据类型）之前的数据转换可以自动发生
+		
+		>必须有一个不带参的构造器；通过反射创建实例
+		
+		>至少有一个供 struts 在执行 action 时调用的方法
+		
+		>Struts2会为每一个HTTP 请求创建一个新的Action实例，即Action不是实例的，是线程安全的
+		
+2.在Action 中访问Web资源：
+	1）、什么是外部资源
+		
+		HttpServletRequest，HttpSession,ServletContext等原生的 Servlet API
+		
+	2）、为什么访问 web资源
+		
+		B\S 的应用的 Controller 中必然需要访问WEB资源：向域对象中读写属性，读写Cookie，获取 Path...
+		
+	3）、如何访问
+		1、和 Servlet API 解耦的方式：只能访问有限的 Servlet API 对象，且只能访问有限的方法（读取请求参数，读写域对象的属性，使 session 失效...）
+		
+			> 使用 ActionContext
+			
+			> 实现XxxAware 接口
+			
+		2、和 Servlet API 耦合的方式：可以访问更多的 Servlet API 对象，且可以调用其原生的方法
+			
+			> 使用 ServletActionContext
+			
+			> 实现  ServletXxxAware 接口
+		
